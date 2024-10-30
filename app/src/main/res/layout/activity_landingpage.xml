@@ -33,34 +33,34 @@
         app:srcCompat="@drawable/baseline_menu_24" />
 
     <Button
-        android:id="@+id/Holidaybutton"
+        android:id="@+id/HolidayButton"
         android:layout_width="261dp"
         android:layout_height="119dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="68dp"
         android:layout_marginBottom="24dp"
         android:text="@string/HolsButton"
-        app:layout_constraintBottom_toTopOf="@+id/Editbutton"
+        app:layout_constraintBottom_toTopOf="@+id/EditButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Button
-        android:id="@+id/Editbutton"
+        android:id="@+id/EditButton"
         android:layout_width="242dp"
         android:layout_height="122dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="76dp"
         android:layout_marginBottom="50dp"
         android:text="@string/EditButton"
-        app:layout_constraintBottom_toTopOf="@+id/Settingsbutton"
+        app:layout_constraintBottom_toTopOf="@+id/settings"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/Holidaybutton"
-        app:layout_constraintTop_toBottomOf="@+id/Holidaybutton"
+        app:layout_constraintStart_toStartOf="@+id/HolidayButton"
+        app:layout_constraintTop_toBottomOf="@+id/HolidayButton"
         app:layout_constraintVertical_bias="1.0" />
 
     <Button
-        android:id="@+id/Settingsbutton"
+        android:id="@+id/settings"
         android:layout_width="250dp"
         android:layout_height="122dp"
         android:layout_marginEnd="76dp"
@@ -68,7 +68,7 @@
         android:text="@string/SettingsButton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/Editbutton" />
+        app:layout_constraintStart_toStartOf="@+id/EditButton" />
 
     <TextView
         android:id="@+id/textView"
@@ -78,6 +78,7 @@
         android:layout_marginTop="39dp"
         android:text="@string/WelcomeText"
         android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 

@@ -13,4 +13,7 @@
     <string name="SettingsButton">Settings</string>
     <string name="NavButtonDescription">Open the navigation tray</string>
     <string name="WelcomeText">Welcome:</string>
+    <string name="PleaseSelect">Please select your preferences below</string>
+    <string name="SnPFor">Settings and preferences for:</string>
+    <string name="CheckboxString">Tick the box to receive push notifications</string>
 </resources>
