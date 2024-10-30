@@ -2,8 +2,10 @@
     <string name="app_name">CourseworkAppProper</string>
     <string name="username">Username:</string>
     <string name="password">Password:</string>
-    <string name="logocontentdescription">Company Logo</string>
+    <string name="LogoContentDescription">Company Logo</string>
     <string name="submit">Submit</string>
-    <string name="passwordhint">Enter your password here:</string>
-    <string name="userhint">Enter your username here:</string>
+    <string name="PasswordHint">Enter your password here:</string>
+    <string name="UserHint">Enter your username here:</string>
+    <string name="OpenNavBar">Open Navigation Bar</string>
+    <string name="CloseNavBar">Close Navigation Bar</string>
 </resources>
