@@ -8,4 +8,9 @@
     <string name="UserHint">Enter your username here:</string>
     <string name="OpenNavBar">Open Navigation Bar</string>
     <string name="CloseNavBar">Close Navigation Bar</string>
+    <string name="HolsButton">Holiday Management</string>
+    <string name="EditButton">Edit Info</string>
+    <string name="SettingsButton">Settings</string>
+    <string name="NavButtonDescription">Open the navigation tray</string>
+    <string name="WelcomeText">Welcome:</string>
 </resources>
