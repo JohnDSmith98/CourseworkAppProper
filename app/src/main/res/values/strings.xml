@@ -16,4 +16,8 @@
     <string name="PleaseSelect">Please select your preferences below</string>
     <string name="SnPFor">Settings and preferences for:</string>
     <string name="CheckboxString">Tick the box to receive push notifications</string>
+    <string name="RequestButtonString">Submit New Request</string>
+    <string name="Approved">Currently Approved:</string>
+    <string name="Requests">Current Requests:</string>
+    <string name="DelReq">Delete Request</string>
 </resources>
