@@ -31,7 +31,7 @@
         app:srcCompat="@drawable/baseline_menu_24" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/ReqButton"
         android:layout_width="264dp"
         android:layout_height="87dp"
         android:layout_marginTop="68dp"
@@ -73,7 +73,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.335"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/ReqButton" />
 
     <ListView
         android:id="@+id/CurrentReqList"

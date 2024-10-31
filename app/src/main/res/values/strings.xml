@@ -20,4 +20,9 @@
     <string name="Approved">Currently Approved:</string>
     <string name="Requests">Current Requests:</string>
     <string name="DelReq">Delete Request</string>
+    <string name="ReqFor">Request for:</string>
+    <string name="From">From:</string>
+    <string name="To">To:</string>
+    <string name="DatePick">Pick Starting Date</string>
+    <string name="DatePick2">Pick Ending Date</string>
 </resources>
