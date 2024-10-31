@@ -12,16 +12,14 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class landingpage extends AppCompatActivity {
-    private Button settings;
-    private Button holiday;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_landingpage);
-        holiday=findViewById(R.id.HolidayButton);
-        settings=findViewById(R.id.settings);
+       Button holiday=findViewById(R.id.HolidayButton);
+       Button settings=findViewById(R.id.settings);
+       Button edit=findViewById(R.id.EditButton);
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -34,6 +32,13 @@ public class landingpage extends AppCompatActivity {
             public void onClick(View v) {
                 Intent hols = new Intent(landingpage.this, HolidayManagement.class);
                 startActivity(hols);
+            }
+        });
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent EditP = new Intent(landingpage.this, EditPage.class);
+                startActivity(EditP);
             }
         });
 

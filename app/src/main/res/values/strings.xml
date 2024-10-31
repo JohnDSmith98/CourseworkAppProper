@@ -25,4 +25,16 @@
     <string name="To">To:</string>
     <string name="DatePick">Pick Starting Date</string>
     <string name="DatePick2">Pick Ending Date</string>
+    <string name="Editing">Editing info for:</string>
+    <string name="FirstName">First Name:</string>
+    <string name="LastName">Last Name:</string>
+    <string name="MiddleNames">Middle Name(s):</string>
+    <string name="Gender">Gender:</string>
+    <string name="DOB">DOB:</string>
+    <string name="JoiningDate">Date of joining company:</string>
+    <string name="SelGen">Select Gender</string>
+    <string name="SelDOB">Select Date of Birth</string>
+    <string name="SelJoin">Select Date of Joining Company</string>
+    <string name="Save">Save</string>
+    <string name="Cancel">Cancel</string>
 </resources>

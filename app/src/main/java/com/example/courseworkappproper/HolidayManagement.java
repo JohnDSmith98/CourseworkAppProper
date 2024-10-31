@@ -14,8 +14,6 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class HolidayManagement extends AppCompatActivity {
-    private Button req;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +27,7 @@ public class HolidayManagement extends AppCompatActivity {
         String[] placeholderText2 = {"Approval 1", "Approval 2"};
         ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, placeholderText2 );
         list2.setAdapter(adapter2);
-        req=findViewById(R.id.ReqButton);
+        Button req = findViewById(R.id.ReqButton);
         req.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
