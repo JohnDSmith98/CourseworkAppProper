@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AdminUsersPage">
+
+    <ImageView
+        android:id="@+id/logoview2"
+        android:layout_width="186dp"
+        android:layout_height="103dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="68dp"
+        android:layout_marginBottom="601dp"
+        android:contentDescription="@string/LogoContentDescription"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/companylogo" />
+
+    <TextView
+        android:id="@+id/UsersText"
+        android:layout_width="147dp"
+        android:layout_height="54dp"
+        android:text="@string/Users"
+        android:textSize="28dp"
+        tools:layout_editor_absoluteX="21dp"
+        tools:layout_editor_absoluteY="163dp" />
+
+    <Button
+        android:id="@+id/MoreButton"
+        android:layout_width="117dp"
+        android:layout_height="57dp"
+        android:text="@string/More"
+        tools:layout_editor_absoluteX="69dp"
+        tools:layout_editor_absoluteY="576dp" />
+
+    <Button
+        android:id="@+id/DeleteButton"
+        android:layout_width="121dp"
+        android:layout_height="58dp"
+        android:text="@string/Delete"
+        tools:layout_editor_absoluteX="224dp"
+        tools:layout_editor_absoluteY="576dp" />
+
+    <Button
+        android:id="@+id/NewUserButton"
+        android:layout_width="176dp"
+        android:layout_height="56dp"
+        android:text="@string/NewUser"
+        tools:layout_editor_absoluteX="168dp"
+        tools:layout_editor_absoluteY="659dp" />
+
+    <TextView
+        android:id="@+id/OrText"
+        android:layout_width="60dp"
+        android:layout_height="31dp"
+        android:text="@string/Or"
+        android:textSize="23dp"
+        tools:layout_editor_absoluteX="77dp"
+        tools:layout_editor_absoluteY="671dp" />
+
+    <ScrollView
+        android:id="@+id/UsersContainer"
+        android:layout_width="406dp"
+        android:layout_height="322dp"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="238dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

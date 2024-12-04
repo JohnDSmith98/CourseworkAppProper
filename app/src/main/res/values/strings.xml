@@ -37,4 +37,12 @@
     <string name="SelJoin">Select Date of Joining Company</string>
     <string name="Save">Save</string>
     <string name="Cancel">Cancel</string>
+    <string name="Approve">Approve</string>
+    <string name="Deny">Deny</string>
+    <string name="Remove">Remove</string>
+    <string name="Users">Users</string>
+    <string name="More">More</string>
+    <string name="Delete">Delete</string>
+    <string name="NewUser">Add New User</string>
+    <string name="Or">Or</string>
 </resources>
