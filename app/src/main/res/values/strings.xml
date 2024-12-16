@@ -45,4 +45,5 @@
     <string name="Delete">Delete</string>
     <string name="NewUser">Add New User</string>
     <string name="Or">Or</string>
+    <string name="SvNewUser">Save as New User</string>
 </resources>
