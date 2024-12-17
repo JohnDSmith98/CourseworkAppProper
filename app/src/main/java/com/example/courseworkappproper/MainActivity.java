@@ -1,6 +1,7 @@
 package com.example.courseworkappproper;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+        MyDatabaseHelper dbHelper = new MyDatabaseHelper(this);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
         log=findViewById(R.id.loginbutton);
         log.setOnClickListener(new View.OnClickListener() {
             @Override

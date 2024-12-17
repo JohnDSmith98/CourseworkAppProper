@@ -1,4 +1,4 @@
-package com.example.courseworkappproper;
+/* package com.example.courseworkappproper;
 
 import android.content.Context;
 import android.util.Log;
@@ -127,4 +127,4 @@ public class API {
         requestQueue.add(request);
     }
 
-}
+} */
