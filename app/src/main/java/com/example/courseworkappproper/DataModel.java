@@ -1,72 +1,73 @@
 package com.example.courseworkappproper;
 
 public class DataModel {
-    String fname, lname, mname, dob, gender, joindate;
+    String firstname, lastname, department, email, joiningdate;
+    Integer leaves;
+    Double salary;
 
-    public DataModel(String Fname, String Lname, String Mname, String Dob, String Gender, String Joindate) {
-        this.fname = Fname;
-        this.lname = Lname;
-        this.mname = Mname;
-        this.dob = Dob;
-        this.gender = Gender;
-        this.joindate = Joindate;
+    public DataModel(String Fname, String Lname, String Department, String Email, String Joiningdate, Integer Leaves, Double Salary) {
+        this.firstname = Fname;
+        this.lastname = Lname;
+        this.department = Department;
+        this.email = Email;
+        this.joiningdate = Joiningdate;
+        this.leaves = Leaves;
+        this.salary = Salary;
     }
 
-    public String getFName() {
-        return (fname);
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setFName(String Fname) {
-        this.fname = Fname;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
-    public String getLname() {
-        return lname;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setLname(String lname) {
-        this.lname = lname;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
-    public String getMname() {
-        return mname;
+    public String getDepartment() {
+        return department;
     }
 
-    public void setMname(String mname) {
-        this.mname = mname;
+    public void setDepartment(String department) {
+        this.department = department;
     }
 
-    public String getDOB() {
-        return dob;
+    public String getEmail() {
+        return email;
     }
 
-    public void setDob(String Dob) {
-        this.dob = Dob;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getGender() {
-        return gender;
+    public Integer getLeaves() {
+        return leaves;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
+    public void setLeaves(Integer leaves) {
+        this.leaves = leaves;
     }
 
-    public String getJoin() {
-        return joindate;
+    public String getJoiningdate() {
+        return joiningdate;
     }
 
-    public void setJoindate(String joindate) {
-        this.joindate = joindate;
+    public void setJoiningdate(String joiningdate) {
+        this.joiningdate = joiningdate;
     }
 
+    public Double getSalary() {
+        return salary;
+    }
 
-    @Override
-    public String toString() {
-        return "DataModel{" +
-                "name='" + fname + " " + lname + '\'' +
-                ", gender='" + gender + '\'' +
-                ", DOB=" + dob +
-                '}';
+    public void setSalary(Double salary) {
+        this.salary = salary;
     }
 }

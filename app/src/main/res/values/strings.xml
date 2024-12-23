@@ -46,4 +46,7 @@
     <string name="NewUser">Add New User</string>
     <string name="Or">Or</string>
     <string name="SvNewUser">Save as New User</string>
+    <string name="Department">Department</string>
+    <string name="Email">Email</string>
+    <string name="LeavesRem">Remaining Leave</string>
 </resources>
