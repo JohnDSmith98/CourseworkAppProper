@@ -1,11 +1,11 @@
 package com.example.courseworkappproper;
 
 public class DataModel {
-    String firstname, lastname, department, email, joiningdate;
+    String firstname, lastname, department, email, joiningdate, role, pass;
     Integer leaves;
     Double salary;
 
-    public DataModel(String Fname, String Lname, String Department, String Email, String Joiningdate, Integer Leaves, Double Salary) {
+    public DataModel(String Fname, String Lname, String Department, String Email, String Joiningdate, Integer Leaves, Double Salary, String Role, String Pass) {
         this.firstname = Fname;
         this.lastname = Lname;
         this.department = Department;
@@ -13,8 +13,9 @@ public class DataModel {
         this.joiningdate = Joiningdate;
         this.leaves = Leaves;
         this.salary = Salary;
+        this.role = Role;
+        this.pass = Pass;
     }
-
     public String getFirstname() {
         return firstname;
     }
@@ -69,5 +70,21 @@ public class DataModel {
 
     public void setSalary(Double salary) {
         this.salary = salary;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getPass() {
+        return pass;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
     }
 }

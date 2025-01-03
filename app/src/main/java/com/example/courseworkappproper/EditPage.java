@@ -19,7 +19,7 @@ import java.util.Calendar;
 
 public class EditPage extends AppCompatActivity {
 
-    EditText edtFname, edtLname, edtDep, edtEmail, edtLeave;
+    EditText edtFname, edtLname, edtDep, edtEmail, edtLeave, edtPass;
     Button btnJoindate, btnSaveNew;
     MyDatabaseHelper myDatabaseHelper;
 
@@ -38,6 +38,7 @@ public class EditPage extends AppCompatActivity {
         edtEmail = findViewById(R.id.editTextTextEmailAddress);
         btnJoindate = findViewById(R.id.button7);
         btnSaveNew = findViewById(R.id.button3);
+        edtPass =findViewById(R.id.editTextText5);
 
         btnSaveNew.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,9 +48,10 @@ public class EditPage extends AppCompatActivity {
                 String strDep = edtDep.getText().toString();
                 String strEmail = edtEmail.getText().toString();
                 String strJoinD = btnJoindate.getText().toString();
+                String strPass = edtPass.getText().toString();
 
                 if (!strFname.isEmpty() && !strLname.isEmpty()) {
-                    DataModel user = new DataModel(strFname, strLname, strDep, strEmail, strJoinD, 0, 35000.0);
+                    DataModel user = new DataModel(strFname, strLname, strDep, strEmail, strJoinD, 0, 35000.0, "", strPass);
                     boolean isInserted = myDatabaseHelper.adduser(user);
 
                     if (isInserted) {

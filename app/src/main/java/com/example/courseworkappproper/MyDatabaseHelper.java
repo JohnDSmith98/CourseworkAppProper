@@ -22,9 +22,11 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     public static final String JOININGDATE = "joiningdate";
     public static final String LEAVES = "leaves";
     public static final String SALARY = "salary";
+    public static final String ROLE = "role";
+    public static final String PASS = "pass";
 
     public MyDatabaseHelper(@Nullable Context context) {
-        super(context, "testuser.db", null, 2);
+        super(context, "testuser.db", null, 3);
     }
 
     @Override
@@ -37,8 +39,10 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
                     DEPARTMENT + " TEXT, " +
                     EMAIL + " TEXT, " +
                     JOININGDATE + " TEXT, " +
-                    LEAVES + " INTEGER," +
-                    SALARY + " REAL)";
+                    LEAVES + " INTEGER, " +
+                    SALARY + " REAL, " +
+                    ROLE + "TEXT DEFAULT 'user' " +
+                    PASS + "TEXT, )";
 
 
         db.execSQL(createTable);
@@ -64,6 +68,8 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         cv.put(JOININGDATE, dataModel.getJoiningdate());
         cv.put(LEAVES, dataModel.getLeaves());
         cv.put(SALARY, dataModel.getSalary());
+        cv.put(ROLE, dataModel.getRole());
+        cv.put(PASS, dataModel.getPass());
 
         long result = db.insert(USERS, null, cv);
         if(result == -1){
@@ -92,8 +98,10 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
                 String joindate = cursor.getString(5);
                 Integer leaves = cursor.getInt(6);
                 Double salary = cursor.getDouble(7);
+                String role = cursor.getString(8);
+                String passw = cursor.getString(9);
 
-                DataModel dataModel = new DataModel(fname, lname, dep, email, joindate, leaves, salary);
+                DataModel dataModel = new DataModel(fname, lname, dep, email, joindate, leaves, salary, role, passw);
                 outputList.add(dataModel);
 
             }while(cursor.moveToNext());
@@ -118,5 +126,18 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             return true;
         }
 
+    }
+
+    public boolean authUser(String username, String password) {
+        SQLiteDatabase db = this.getReadableDatabase(); // Get a readable database
+        String query = "SELECT * FROM " + USERS + " WHERE " + EMAIL + " = ? AND " + PASS + " = ?";
+        Cursor cursor = db.rawQuery(query, new String[]{username, password}); //Using placeholders to prevent SQL injection
+
+        boolean isAuthenticated = cursor.getCount() > 0; //If the count is greater than 0, the combination exists
+
+        cursor.close(); // Always close the cursor to prevent memory leaks
+        db.close();     // Close the database connection
+
+        return isAuthenticated;
     }
 }
