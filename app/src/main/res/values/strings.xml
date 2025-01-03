@@ -49,4 +49,5 @@
     <string name="Department">Department</string>
     <string name="Email">Email</string>
     <string name="LeavesRem">Remaining Leave</string>
+    <string name="Pass">Password</string>
 </resources>
