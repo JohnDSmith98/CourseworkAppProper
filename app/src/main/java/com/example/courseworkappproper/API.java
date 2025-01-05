@@ -20,6 +20,7 @@ import org.json.JSONObject;
 
 import java.lang.reflect.Type;
 import java.util.List;
+import java.util.Optional;
 
 public class API {
 
@@ -34,8 +35,8 @@ public class API {
         }
     }
 
-    // Method to get all employees
-    public static void getAllEmployees(Context context) {
+    // Method to get all employees - updated to include callback functionality for constant API updates - kept as non lambda
+    public static void getAllEmployees(Context context, EmpsRecieved callback) {
         initQueue(context);
         String url = BASE_URL + "/employees";
 
@@ -45,6 +46,7 @@ public class API {
                     public void onResponse(JSONArray response) {
                         Type listType = new TypeToken<List<Employee>>() {}.getType();
                         List<Employee> employees = gson.fromJson(response.toString(), listType);
+                        callback.Success(employees);
 
                         // Handle the list of employees
                         for (Employee employee : employees) {
@@ -60,6 +62,7 @@ public class API {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Log.e("Volley", "Error fetching employees: " + error.getMessage());
+                        callback.Error(error);
                     }
                 }
         );
@@ -69,8 +72,26 @@ public class API {
 
     }
 
+    // Method to get a single employee based on their ID
+    public static void getAnEmployee(Context context, int id, EmpRecieved callback) {
+        initQueue(context);
+        String url = BASE_URL + "/employees/get/" + id;
 
-    public static void addEmployee(Context context, Employee employee) {
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                response -> {
+                    Employee employee = gson.fromJson(response.toString(), Employee.class);
+                    callback.Success(employee);
+                },
+                error -> {
+                        Log.e("Volley", "Error fetching employee: " + error.getMessage());
+                        callback.Error(error);
+                }
+        );
+        requestQueue.add(request);
+}
+
+    //Method to add an Employee - also kept as non-lambda - updated to fit the constant API updates
+    public static void addEmployee(Context context, Employee employee, OnResponse callback) {
         initQueue(context);
         String url = BASE_URL + "/employees/add";
 
@@ -84,6 +105,7 @@ public class API {
                             // onSuccess behavior - Log the success message from the API response
                             String message = response.optString("message", "Employee added successfully");
                             Log.d("EmployeeService", message);
+                            callback.Success(message);
                         }
                     },
                     new Response.ErrorListener() {
@@ -91,6 +113,7 @@ public class API {
                         public void onErrorResponse(VolleyError error) {
                             // onError behavior - Log the error
                             Log.e("EmployeeError", "Error adding employee: " + error.getMessage());
+                            callback.Error(error);
                         }
                     }
             );
@@ -103,7 +126,7 @@ public class API {
 
 
     // Method to delete an employee
-    public static void deleteEmployee(Context context, int id) {
+    public static void deleteEmployee(Context context, int id, OnResponse callback) {
         initQueue(context);
         String url = BASE_URL + "/employees/delete/" + id;
 
@@ -113,6 +136,7 @@ public class API {
                     public void onResponse(String response) {
                         // onSuccess behavior - Log success message
                         Log.d("EmployeeService", "Employee deleted successfully");
+                        callback.Success(response);
                     }
                 },
                 new Response.ErrorListener() {
@@ -120,10 +144,57 @@ public class API {
                     public void onErrorResponse(VolleyError error) {
                         // onError behavior - Log the error
                         Log.e("EmployeeError", "Error deleting employee: " + error.getMessage());
+                        callback.Error(error);
                     }
                 }
         );
 
         requestQueue.add(request);
     }
+
+    public static void HealthCheck(Context context, HealthCheck callback){
+        initQueue(context);
+        String url = BASE_URL + "/health";
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        String status = response.optString("message", "Employee added successfully");
+                        Log.d("EmployeeService", status);
+                        callback.Success(status);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("HealthError", "Error with health check: " + error.getMessage());
+                        callback.Error(error);
+                    }
+                }
+        );
+                requestQueue.add(request);
+    }
+
+
+    public interface EmpRecieved {
+    void Success(Employee employee);
+    void Error(VolleyError error);
+    }
+
+    public interface EmpsRecieved {
+        void Success(List<Employee> employees);
+        void Error(VolleyError error);
+    }
+
+    public interface HealthCheck{
+        void Success(String status);
+        void Error(VolleyError error);
+    }
+
+    public interface OnResponse{
+        void Success(String message);
+        void Error(VolleyError error);
+    }
 }
+

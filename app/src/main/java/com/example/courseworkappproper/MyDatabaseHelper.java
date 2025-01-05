@@ -41,8 +41,8 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
                     JOININGDATE + " TEXT, " +
                     LEAVES + " INTEGER, " +
                     SALARY + " REAL, " +
-                    ROLE + "TEXT DEFAULT 'user' " +
-                    PASS + "TEXT, )";
+                    ROLE + "TEXT DEFAULT 'user', " +
+                    PASS + "TEXT)";
 
 
         db.execSQL(createTable);
