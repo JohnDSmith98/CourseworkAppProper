@@ -5,6 +5,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +16,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
     private Button log, dog;
+    EditText user, pass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,13 +25,30 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         MyDatabaseHelper dbHelper = new MyDatabaseHelper(this);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
+        DataModel testAdmin = new DataModel("Test", "Admin", "Management", "test@admin.com", "01/01/2001", 0, 100000, "admin", "test123");
+        dbHelper.adduser(testAdmin);
         log=findViewById(R.id.loginbutton);
         dog = findViewById(R.id.button5);
+        user = findViewById(R.id.usernamebox);
+        pass = findViewById(R.id.passwordbox);
         log.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent landingpageintent=new Intent(MainActivity.this, landingpage.class);
-                startActivity(landingpageintent);
+                String usern = user.getText().toString();
+                String passw = pass.getText().toString();
+
+                if (usern.isEmpty() || passw.isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "Please enter both username and password", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                MyDatabaseHelper dbhelper = new MyDatabaseHelper(getApplicationContext());
+                boolean auth = dbhelper.authUser(usern, passw);
+                if (auth) {
+                    Intent z = new Intent(MainActivity.this, landingpage.class);
+                    startActivity(z);
+                    finish();
+                }
             }
         });
 
