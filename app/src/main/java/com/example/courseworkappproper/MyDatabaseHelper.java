@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -26,7 +27,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     public static final String PASS = "pass";
 
     public MyDatabaseHelper(@Nullable Context context) {
-        super(context, "testuser.db", null, 3);
+        super(context, "testuser.db", null, 7);
     }
 
     @Override
@@ -41,8 +42,8 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
                     JOININGDATE + " TEXT, " +
                     LEAVES + " INTEGER, " +
                     SALARY + " REAL, " +
-                    ROLE + "TEXT DEFAULT 'user', " +
-                    PASS + "TEXT)";
+                    ROLE + " TEXT DEFAULT 'user', " +
+                    PASS + " TEXT" + ")";
 
 
         db.execSQL(createTable);
@@ -58,6 +59,10 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     }
 
     public boolean adduser(DataModel dataModel){
+        Log.d("DBInsertCheck",
+                "Inserting user: FIRSTNAME=" + dataModel.getFirstname()
+                        + ", LASTNAME=" + dataModel.getLastname()
+                        + ", EMAIL=" + dataModel.getEmail());
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
@@ -99,9 +104,9 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
                 Integer leaves = cursor.getInt(6);
                 Double salary = cursor.getDouble(7);
                 String role = cursor.getString(8);
-                String passw = cursor.getString(9);
+                String pass = cursor.getString(9);
 
-                DataModel dataModel = new DataModel(fname, lname, dep, email, joindate, leaves, salary, role, passw);
+                DataModel dataModel = new DataModel(fname, lname, dep, email, joindate, leaves, salary, role, pass);
                 outputList.add(dataModel);
 
             }while(cursor.moveToNext());
@@ -139,5 +144,11 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         db.close();     // Close the database connection
 
         return isAuthenticated;
+    }
+
+    public void clearList(){
+        SQLiteDatabase db = getWritableDatabase();
+        db.delete("users", null, null);
+        db.close();
     }
 }

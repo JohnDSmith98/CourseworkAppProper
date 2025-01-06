@@ -15,6 +15,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.android.volley.VolleyError;
+
 import java.util.Calendar;
 
 public class EditPage extends AppCompatActivity {
@@ -55,8 +57,30 @@ public class EditPage extends AppCompatActivity {
                     boolean isInserted = myDatabaseHelper.adduser(user);
 
                     if (isInserted) {
-                        Toast.makeText(EditPage.this, "User added successfully", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(EditPage.this, "User added locally successfully", Toast.LENGTH_SHORT).show();
                     }
+
+                    Employee emp = new Employee();
+                    emp.setFirstname(strFname);
+                    emp.setLastname(strLname);
+                    emp.setDepartment(strDep);
+                    emp.setEmail(strEmail);
+                    emp.setSalary(35000);
+                    emp.setLeaves(0);
+                    emp.setJoiningDate(strJoinD);
+
+                    API.addEmployee(EditPage.this, emp, new API.OnResponse() {
+                        @Override
+                        public void Success(String message) {
+                            Toast.makeText(EditPage.this, message, Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
+
+                        @Override
+                        public void Error(VolleyError error) {
+                            Toast.makeText(EditPage.this, "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 }
             }
         });

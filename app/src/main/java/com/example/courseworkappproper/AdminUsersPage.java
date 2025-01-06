@@ -3,7 +3,9 @@ package com.example.courseworkappproper;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,7 +13,14 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.android.volley.VolleyError;
+
+import java.util.List;
+
 public class AdminUsersPage extends AppCompatActivity {
+    private EmployeeAdapter adapter;
+    private MyDatabaseHelper dbHelper;
+    private ListView EmployeeList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,11 +33,54 @@ public class AdminUsersPage extends AppCompatActivity {
             return insets;
         });
 
-        ListView EmployeeList = findViewById(R.id.EmployeeList);
-        MyDatabaseHelper dbHelper = new MyDatabaseHelper(this);
+        EmployeeList = findViewById(R.id.EmployeeList);
+        dbHelper = new MyDatabaseHelper(this);
         SQLiteDatabase database = dbHelper.getReadableDatabase();
         Cursor cursor = database.query("users", null, null, null, null, null, null);
-        EmployeeAdapter adapter = new EmployeeAdapter(this, cursor);
+        Log.d("CursorCount", "cursor.getCount() = " + cursor.getCount());
+        adapter = new EmployeeAdapter(this, cursor);
         EmployeeList.setAdapter(adapter);
+        UpdateList();
+    }
+
+    private void UpdateList(){
+        API.getAllEmployees(this, new API.EmpsRecieved() {
+            @Override
+            public void Success(List<Employee> employees) {
+                dbHelper.clearList();
+
+                for (Employee employee : employees){
+                    DataModel dataModel = convertToDataModel(employee);
+                    dbHelper.adduser(dataModel);
+                }
+                Refresh();
+            }
+
+            @Override
+            public void Error(VolleyError error) {
+                Toast.makeText(AdminUsersPage.this, "Failed to pull from API: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                Refresh();
+            }
+        });
+    }
+
+    private void Refresh(){
+        SQLiteDatabase database = dbHelper.getReadableDatabase();
+        Cursor cursor = database.query("users", null, null, null, null, null, null);
+        adapter.changeCursor(cursor);
+    }
+
+    private DataModel convertToDataModel(Employee employee){
+        return new DataModel
+            (employee.getFirstname(),
+            employee.getLastname(),
+            employee.getDepartment(),
+            employee.getEmail(),
+            employee.getJoiningDate(),
+            employee.getLeaves(),
+            employee.getSalary(),
+            "user",
+            ""
+        );
     }
 }

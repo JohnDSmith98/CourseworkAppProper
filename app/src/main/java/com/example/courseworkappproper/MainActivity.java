@@ -25,8 +25,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         MyDatabaseHelper dbHelper = new MyDatabaseHelper(this);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        DataModel testAdmin = new DataModel("Test", "Admin", "Management", "test@admin.com", "01/01/2001", 0, 100000, "admin", "test123");
-        dbHelper.adduser(testAdmin);
+       // DataModel testAdmin = new DataModel("Test", "Admin", "Management", "test@admin.com", "01/01/2001", 0, 100000.0, "admin", "test123");
+       // DataModel a = new DataModel("Test", "Admin", "Management", "a", "01/01/2001", 0, 100000.0, "admin", "a");
+       // dbHelper.adduser(testAdmin);
+       // dbHelper.adduser(a);
         log=findViewById(R.id.loginbutton);
         dog = findViewById(R.id.button5);
         user = findViewById(R.id.usernamebox);

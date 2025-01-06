@@ -160,7 +160,7 @@ public class API {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        String status = response.optString("message", "Employee added successfully");
+                        String status = response.optString("message", "Health check passed");
                         Log.d("EmployeeService", status);
                         callback.Success(status);
                     }

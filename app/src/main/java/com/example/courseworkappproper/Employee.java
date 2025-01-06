@@ -8,6 +8,8 @@ public class Employee {
     private double salary;
     private String joiningdate;
     private int leaves;
+  //  private String role;
+   // private String pass;
 
     // Getters and Setters
     public int getId() { return id; }
@@ -31,6 +33,9 @@ public class Employee {
     public String getJoiningDate() { return joiningdate; }
     public void setJoiningDate(String joiningDate) { this.joiningdate = joiningDate; }
     public int getLeaves() { return leaves; }
-
     public void setLeaves(int leaves) { this.leaves = leaves; }
+
+//public String getRole() { this.role = role; }
+  //  public String getPass() {this.pass = pass; }
+
 }
