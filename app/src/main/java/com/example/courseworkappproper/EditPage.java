@@ -73,7 +73,7 @@ public class EditPage extends AppCompatActivity {
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                                String date = dayOfMonth + "/" + (month + 1) + "/" + year; //Month has to be +1 as zero-indexed
+                                String date = year + "-" + (month + 1) + "-" + dayOfMonth; //Month has to be +1 as zero-indexed
                                 btnJoindate.setText(date);
                             }
                         },
