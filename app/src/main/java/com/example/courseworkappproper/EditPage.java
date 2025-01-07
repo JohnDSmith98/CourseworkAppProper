@@ -23,7 +23,7 @@ public class EditPage extends AppCompatActivity {
 
     EditText edtFname, edtLname, edtDep, edtEmail, edtLeave, edtPass;
     Button btnJoindate, btnSaveNew;
-    MyDatabaseHelper myDatabaseHelper;
+    MyDatabaseHelper myDatabaseHelper; //Initialising the buttons/text fields/database helpers
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +33,7 @@ public class EditPage extends AppCompatActivity {
 
         myDatabaseHelper = new MyDatabaseHelper(this);
 
-        edtFname = findViewById(R.id.editTextText);
+        edtFname = findViewById(R.id.editTextText); //Allocating the physical fields in the XML to be able to use them
         edtLname = findViewById(R.id.editTextText2);
         edtDep = findViewById(R.id.editTextText3);
         edtLeave = findViewById(R.id.editTextText4);
@@ -45,22 +45,22 @@ public class EditPage extends AppCompatActivity {
         btnSaveNew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String strFname = edtFname.getText().toString();
+                String strFname = edtFname.getText().toString(); //Gathering the strings inside of the text fields
                 String strLname = edtLname.getText().toString();
                 String strDep = edtDep.getText().toString();
                 String strEmail = edtEmail.getText().toString();
                 String strJoinD = btnJoindate.getText().toString();
                 String strPass = edtPass.getText().toString();
 
-                if (!strFname.isEmpty() && !strLname.isEmpty()) {
+                if (!strFname.isEmpty() && !strLname.isEmpty()) { //Validation that First name and last name fields have entries
                     DataModel user = new DataModel(strFname, strLname, strDep, strEmail, strJoinD, 0, 35000.0, "", strPass);
-                    boolean isInserted = myDatabaseHelper.adduser(user);
+                    boolean isInserted = myDatabaseHelper.adduser(user); //Take the values on the form and add as a user to the db
 
-                    if (isInserted) {
+                    if (isInserted) { //Show a toast message confirming this
                         Toast.makeText(EditPage.this, "User added locally successfully", Toast.LENGTH_SHORT).show();
                     }
 
-                    Employee emp = new Employee();
+                    Employee emp = new Employee(); //Doing the same but for an 'Employee' to get added to the API
                     emp.setFirstname(strFname);
                     emp.setLastname(strLname);
                     emp.setDepartment(strDep);
@@ -71,13 +71,13 @@ public class EditPage extends AppCompatActivity {
 
                     API.addEmployee(EditPage.this, emp, new API.OnResponse() {
                         @Override
-                        public void Success(String message) {
+                        public void Success(String message) { //API Success - everything is fine
                             Toast.makeText(EditPage.this, message, Toast.LENGTH_SHORT).show();
                             finish();
                         }
 
                         @Override
-                        public void Error(VolleyError error) {
+                        public void Error(VolleyError error) { //API error - will still be added to local db but not pushed to API
                             Toast.makeText(EditPage.this, "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
@@ -85,7 +85,7 @@ public class EditPage extends AppCompatActivity {
             }
         });
 
-        btnJoindate.setOnClickListener(new View.OnClickListener() { //Setting up the join date calender
+        btnJoindate.setOnClickListener(new View.OnClickListener() { //Setting up the join date calender using Android calender functionality
             @Override
             public void onClick(View v) {
                 final Calendar calendar = Calendar.getInstance();
@@ -97,7 +97,7 @@ public class EditPage extends AppCompatActivity {
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                                String date = year + "-" + (month + 1) + "-" + dayOfMonth; //Month has to be +1 as zero-indexed
+                                String date = year + "-" + (month + 1) + "-" + dayOfMonth; //Month has to be +1 as zero-indexed - formatted to match API
                                 btnJoindate.setText(date);
                             }
                         },

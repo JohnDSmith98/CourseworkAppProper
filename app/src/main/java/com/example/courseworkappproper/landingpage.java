@@ -20,6 +20,8 @@ public class landingpage extends AppCompatActivity {
        Button holiday=findViewById(R.id.HolidayButton);
        Button settings=findViewById(R.id.settings);
        Button edit=findViewById(R.id.EditButton);
+       Button reqs = findViewById(R.id.ReqsBtn);
+       Button users = findViewById(R.id.UserBtn);
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,6 +44,21 @@ public class landingpage extends AppCompatActivity {
             }
         });
 
+        reqs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent a = new Intent(landingpage.this, AdminApproval.class);
+                startActivity(a);
+            }
+        });
+
+        users.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent a = new Intent(landingpage.this, AdminUsersPage.class);
+                startActivity(a);
+            }
+        });
 
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {

@@ -11,54 +11,40 @@
         android:id="@+id/logoview"
         android:layout_width="186dp"
         android:layout_height="103dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="68dp"
-        android:layout_marginBottom="601dp"
         android:contentDescription="@string/LogoContentDescription"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/companylogo" />
-
-    <TextView
-        android:id="@+id/UsersName"
-        android:layout_width="100dp"
-        android:layout_height="38dp"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="44dp"
-        tools:layout_editor_absoluteY="190dp" />
+        app:srcCompat="@drawable/companylogo"
+        tools:layout_editor_absoluteX="157dp"
+        tools:layout_editor_absoluteY="16dp" />
 
     <Button
         android:id="@+id/DenyHolButton"
-        android:layout_width="97dp"
-        android:layout_height="47dp"
+        android:layout_width="128dp"
+        android:layout_height="63dp"
         android:text="@string/Deny"
-        tools:layout_editor_absoluteX="298dp"
-        tools:layout_editor_absoluteY="259dp" />
+        tools:layout_editor_absoluteX="225dp"
+        tools:layout_editor_absoluteY="316dp" />
 
     <Button
         android:id="@+id/ApproveHolButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="128dp"
+        android:layout_height="58dp"
         android:text="@string/Approve"
-        tools:layout_editor_absoluteX="197dp"
-        tools:layout_editor_absoluteY="259dp" />
+        tools:layout_editor_absoluteX="68dp"
+        tools:layout_editor_absoluteY="321dp" />
 
     <Button
         android:id="@+id/RemoveReqButton"
         android:layout_width="135dp"
-        android:layout_height="58dp"
+        android:layout_height="67dp"
         android:text="@string/Remove"
         tools:layout_editor_absoluteX="138dp"
-        tools:layout_editor_absoluteY="626dp" />
+        tools:layout_editor_absoluteY="618dp" />
 
     <ScrollView
         android:id="@+id/ApprovedContainer"
-        android:layout_width="412dp"
-        android:layout_height="212dp"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="413dp">
+        android:layout_width="411dp"
+        android:layout_height="67dp"
+        tools:layout_editor_absoluteY="549dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -69,29 +55,16 @@
     <TextView
         android:id="@+id/ApprovedText"
         android:layout_width="133dp"
-        android:layout_height="27dp"
+        android:layout_height="67dp"
         android:text="@string/Approved"
         tools:layout_editor_absoluteX="15dp"
-        tools:layout_editor_absoluteY="378dp" />
+        tools:layout_editor_absoluteY="474dp" />
 
-    <Button
-        android:id="@+id/EditInfoButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/EditButton"
+    <ListView
+        android:id="@+id/RequestsList"
+        android:layout_width="357dp"
+        android:layout_height="132dp"
         tools:layout_editor_absoluteX="29dp"
-        tools:layout_editor_absoluteY="254dp" />
+        tools:layout_editor_absoluteY="168dp" />
 
-    <ScrollView
-        android:id="@+id/RequestsContainer"
-        android:layout_width="172dp"
-        android:layout_height="68dp"
-        tools:layout_editor_absoluteX="214dp"
-        tools:layout_editor_absoluteY="178dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

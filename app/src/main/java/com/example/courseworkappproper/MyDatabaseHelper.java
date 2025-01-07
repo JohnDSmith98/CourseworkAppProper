@@ -27,7 +27,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     public static final String PASS = "pass";
 
     public MyDatabaseHelper(@Nullable Context context) {
-        super(context, "testuser.db", null, 7);
+        super(context, "testuser.db", null, 8);
     }
 
     @Override
@@ -35,34 +35,37 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         String createTable =
             "CREATE TABLE " + USERS + " (" +
                 ID + " INTEGER PRIMARY KEY, " +
-                    FIRSTNAME + " TEXT, " +
-                    LASTNAME + " TEXT, " +
-                    DEPARTMENT + " TEXT, " +
-                    EMAIL + " TEXT, " +
-                    JOININGDATE + " TEXT, " +
-                    LEAVES + " INTEGER, " +
-                    SALARY + " REAL, " +
-                    ROLE + " TEXT DEFAULT 'user', " +
-                    PASS + " TEXT" + ")";
+                FIRSTNAME + " TEXT, " +
+                LASTNAME + " TEXT, " +
+                DEPARTMENT + " TEXT, " +
+                EMAIL + " TEXT, " +
+                JOININGDATE + " TEXT, " +
+                LEAVES + " INTEGER, " +
+                SALARY + " REAL, " +
+                ROLE + " TEXT DEFAULT 'user', " +
+                PASS + " TEXT" + ")";
 
+        String createReqTable =
+            "CREATE TABLE " + "requests " + " (" +
+                 ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                 EMAIL + " TEXT, " +
+                 "start_date TEXT, " +
+                 "end_date TEXT, " +
+                 "status TEXT DEFAULT 'pending')";
 
         db.execSQL(createTable);
-
+        db.execSQL(createReqTable);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         String dropTable = "DROP TABLE IF EXISTS " + USERS;
         db.execSQL(dropTable);
+        db.execSQL("DROP TABLE IF EXISTS requests");
         onCreate(db);
-
     }
 
     public boolean adduser(DataModel dataModel){
-        Log.d("DBInsertCheck",
-                "Inserting user: FIRSTNAME=" + dataModel.getFirstname()
-                        + ", LASTNAME=" + dataModel.getLastname()
-                        + ", EMAIL=" + dataModel.getEmail());
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
@@ -131,6 +134,19 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             return true;
         }
 
+    }
+
+    public boolean addReq(ContentValues cv){
+        SQLiteDatabase db = this.getWritableDatabase();
+        long result = db.insert("requests", null, cv);
+        db.close();
+        if(result == -1){
+            Log.d("DBInsert", "Request added successfully: " + cv.toString());
+            return false;
+        }else{
+            Log.e("DBInsert", "Failed to add request: " + cv.toString());
+            return true;
+        }
     }
 
     public boolean authUser(String username, String password) {

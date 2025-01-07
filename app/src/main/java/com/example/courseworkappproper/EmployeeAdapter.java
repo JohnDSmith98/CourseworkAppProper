@@ -25,10 +25,6 @@ public class EmployeeAdapter extends CursorAdapter {
         TextView textView2 = (TextView) view.findViewById(android.R.id.text2);
         String EmpLname = cursor.getString(cursor.getColumnIndexOrThrow(MyDatabaseHelper.LASTNAME));
         String EmpFname = cursor.getString(cursor.getColumnIndexOrThrow(MyDatabaseHelper.FIRSTNAME));
-        Log.d("BindViewCheck",
-                "Row " + cursor.getPosition()
-                        + ": EmpLname=" + EmpLname
-                        + ", EmpFname=" + EmpFname);
         textView.setText(EmpLname);
         textView2.setText(EmpFname);
     }
