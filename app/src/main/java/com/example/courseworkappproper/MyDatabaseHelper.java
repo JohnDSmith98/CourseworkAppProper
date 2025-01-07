@@ -27,7 +27,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     public static final String PASS = "pass";
 
     public MyDatabaseHelper(@Nullable Context context) {
-        super(context, "testuser.db", null, 8);
+        super(context, "testuser.db", null, 10);
     }
 
     @Override
@@ -160,14 +160,14 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     }
 
     public boolean authUser(String username, String password) {
-        SQLiteDatabase db = this.getReadableDatabase(); // Get a readable database
+        SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT * FROM " + USERS + " WHERE " + EMAIL + " = ? AND " + PASS + " = ?";
-        Cursor cursor = db.rawQuery(query, new String[]{username, password}); //Using placeholders to prevent SQL injection
+        Cursor cursor = db.rawQuery(query, new String[]{username, password});//Using placeholders to prevent SQL injection
 
-        boolean isAuthenticated = cursor.getCount() > 0; //If the count is greater than 0, the combination exists
+        boolean isAuthenticated = cursor.getCount() > 0;//If the count is greater than 0, the combination exists
 
-        cursor.close(); // Always close the cursor to prevent memory leaks
-        db.close();     // Close the database connection
+        cursor.close();
+        db.close();
 
         return isAuthenticated;
     }

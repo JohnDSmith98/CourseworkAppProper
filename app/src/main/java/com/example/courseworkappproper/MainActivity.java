@@ -15,7 +15,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
-    private Button log, dog, fog; //Initialising the buttons and edit-text fields needed for log in
+    private Button log; //Initialising the buttons and edit-text fields needed for log in
     EditText user, pass;
 
     @Override
