@@ -10,41 +10,60 @@
     <ImageView
         android:id="@+id/logoview"
         android:layout_width="186dp"
-        android:layout_height="103dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="68dp"
+        android:layout_marginBottom="49dp"
         android:contentDescription="@string/LogoContentDescription"
-        app:srcCompat="@drawable/companylogo"
-        tools:layout_editor_absoluteX="157dp"
-        tools:layout_editor_absoluteY="16dp" />
+        app:layout_constraintBottom_toTopOf="@+id/RequestsList"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/companylogo" />
 
     <Button
         android:id="@+id/DenyHolButton"
-        android:layout_width="128dp"
-        android:layout_height="63dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="58dp"
+        android:layout_marginBottom="95dp"
         android:text="@string/Deny"
-        tools:layout_editor_absoluteX="225dp"
-        tools:layout_editor_absoluteY="316dp" />
+        app:layout_constraintBottom_toTopOf="@+id/ApprovedText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ApproveHolButton"
+        app:layout_constraintTop_toBottomOf="@+id/RequestsList" />
 
     <Button
         android:id="@+id/ApproveHolButton"
-        android:layout_width="128dp"
-        android:layout_height="58dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginEnd="29dp"
         android:text="@string/Approve"
-        tools:layout_editor_absoluteX="68dp"
-        tools:layout_editor_absoluteY="321dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/DenyHolButton"
+        app:layout_constraintEnd_toStartOf="@+id/DenyHolButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/DenyHolButton" />
 
     <Button
         android:id="@+id/RemoveReqButton"
         android:layout_width="135dp"
-        android:layout_height="67dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="46dp"
         android:text="@string/Remove"
-        tools:layout_editor_absoluteX="138dp"
-        tools:layout_editor_absoluteY="618dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ApprovedContainer" />
 
     <ScrollView
         android:id="@+id/ApprovedContainer"
-        android:layout_width="411dp"
-        android:layout_height="67dp"
-        tools:layout_editor_absoluteY="549dp">
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="2dp"
+        app:layout_constraintBottom_toTopOf="@+id/RemoveReqButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ApprovedText">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -55,16 +74,24 @@
     <TextView
         android:id="@+id/ApprovedText"
         android:layout_width="133dp"
-        android:layout_height="67dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginBottom="8dp"
         android:text="@string/Approved"
-        tools:layout_editor_absoluteX="15dp"
-        tools:layout_editor_absoluteY="474dp" />
+        app:layout_constraintBottom_toTopOf="@+id/ApprovedContainer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/DenyHolButton" />
 
     <ListView
         android:id="@+id/RequestsList"
-        android:layout_width="357dp"
-        android:layout_height="132dp"
-        tools:layout_editor_absoluteX="29dp"
-        tools:layout_editor_absoluteY="168dp" />
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/DenyHolButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logoview" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

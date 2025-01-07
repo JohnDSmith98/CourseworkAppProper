@@ -9,71 +9,103 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="186dp"
-        android:layout_height="103dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="68dp"
         android:contentDescription="@string/LogoContentDescription"
-        app:srcCompat="@drawable/companylogo"
-        tools:layout_editor_absoluteX="157dp"
-        tools:layout_editor_absoluteY="16dp" />
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView3"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/companylogo" />
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="75dp"
-        android:layout_height="57dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="66dp"
+        android:layout_marginBottom="46dp"
         android:contentDescription="@string/NavButtonDescription"
-        app:srcCompat="@drawable/baseline_menu_24"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="16dp" />
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintEnd_toStartOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/baseline_menu_24" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="208dp"
-        android:layout_height="59dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="553dp"
         android:fontFamily="serif"
         android:text="@string/WelcomeText"
         android:textSize="24sp"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="119dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <Button
         android:id="@+id/ReqsBtn"
-        android:layout_width="247dp"
-        android:layout_height="100dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="15dp"
         android:text="Requests"
-        tools:layout_editor_absoluteX="78dp"
-        tools:layout_editor_absoluteY="508dp" />
+        app:layout_constraintBottom_toTopOf="@+id/UserBtn"
+        app:layout_constraintEnd_toEndOf="@+id/UserBtn"
+        app:layout_constraintStart_toStartOf="@+id/UserBtn"
+        app:layout_constraintTop_toBottomOf="@+id/settings" />
 
     <Button
         android:id="@+id/EditButton"
         android:layout_width="251dp"
-        android:layout_height="99dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="12dp"
         android:text="@string/EditButton"
-        tools:layout_editor_absoluteX="78dp"
-        tools:layout_editor_absoluteY="282dp" />
+        app:layout_constraintBottom_toTopOf="@+id/settings"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/HolidayButton" />
 
     <Button
         android:id="@+id/HolidayButton"
-        android:layout_width="270dp"
-        android:layout_height="91dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginBottom="8dp"
         android:text="@string/HolsButton"
-        tools:layout_editor_absoluteX="71dp"
-        tools:layout_editor_absoluteY="183dp" />
+        app:layout_constraintBottom_toTopOf="@+id/EditButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Button
         android:id="@+id/settings"
-        android:layout_width="259dp"
-        android:layout_height="102dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="71dp"
+        android:layout_marginEnd="71dp"
+        android:layout_marginBottom="13dp"
         android:text="@string/SettingsButton"
-        tools:layout_editor_absoluteX="74dp"
-        tools:layout_editor_absoluteY="406dp" />
+        app:layout_constraintBottom_toTopOf="@+id/ReqsBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/EditButton" />
 
     <Button
         android:id="@+id/UserBtn"
-        android:layout_width="227dp"
-        android:layout_height="85dp"
+        android:layout_width="248dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
         android:text="All users"
-        tools:layout_editor_absoluteX="91dp"
-        tools:layout_editor_absoluteY="630dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ReqsBtn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

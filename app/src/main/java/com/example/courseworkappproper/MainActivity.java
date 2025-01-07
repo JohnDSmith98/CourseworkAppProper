@@ -28,8 +28,6 @@ public class MainActivity extends AppCompatActivity {
         DataModel a = new DataModel("Test", "Admin", "Management", "a", "01/01/2001", 0, 100000.0, "admin", "a");
         dbHelper.adduser(a); //Adds the testing Admin user to the database on launch
         log=findViewById(R.id.loginbutton);
-        dog = findViewById(R.id.button5);
-        fog = findViewById(R.id.button6);
         user = findViewById(R.id.usernamebox);
         pass = findViewById(R.id.passwordbox);
         log.setOnClickListener(new View.OnClickListener() {

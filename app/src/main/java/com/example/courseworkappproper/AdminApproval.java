@@ -1,5 +1,6 @@
 package com.example.courseworkappproper;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -19,7 +20,7 @@ public class AdminApproval extends AppCompatActivity {
     private RequestAdapter requestAdapter;
     private MyDatabaseHelper dbHelper;
     private ListView ReqList;
-    private Button DenyBtn;
+    private Button DenyBtn, ApproveBtn;
     private String requestedID;
 
     @Override
@@ -30,6 +31,7 @@ public class AdminApproval extends AppCompatActivity {
 
         dbHelper = new MyDatabaseHelper(this);
         ReqList = findViewById(R.id.RequestsList);
+        ApproveBtn = findViewById(R.id.ApproveHolButton);
         DenyBtn = findViewById(R.id.DenyHolButton);
         UpdateReqs();
 
@@ -53,6 +55,20 @@ public class AdminApproval extends AppCompatActivity {
                 }
             }
         });
+
+        ApproveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(requestedID != null){
+                    appReq();
+                    requestedID = null;
+                    UpdateReqs();
+                }else {
+                    Toast.makeText(AdminApproval.this, "Error: No request is selected", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -63,13 +79,15 @@ public class AdminApproval extends AppCompatActivity {
 
     private void UpdateReqs(){
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        Cursor cursor = db.query("requests", null, null, null, null, null, null, null);
-
+       // Cursor cursor = db.query("requests", null, null, null, null, null, null, null);
+        Cursor pendCursor = dbHelper.reqByStatus("pending");
+        RequestAdapter pendingAdapter = new RequestAdapter(this, pendCursor);
+        ReqList.setAdapter(pendingAdapter);
         if (requestAdapter == null){
-            requestAdapter = new RequestAdapter(this, cursor);
+            requestAdapter = new RequestAdapter(this, pendCursor);
             ReqList.setAdapter(requestAdapter);
         }else{
-            requestAdapter.changeCursor(cursor);
+            requestAdapter.changeCursor(pendCursor);
         }
     }
 
@@ -81,6 +99,21 @@ public class AdminApproval extends AppCompatActivity {
             Toast.makeText(this, "Request denied", Toast.LENGTH_SHORT).show();
         }else{
             Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
+        }
+        db.close();
+    }
+
+    private void appReq(){
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("status", "approved");
+
+        int rowsUpdated = db.update("requests", cv, "_id = ?", new String[]{requestedID});
+
+        if (rowsUpdated > 0) {
+            Toast.makeText(this, "Request successfully approved", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(this, "There was an error approving this request", Toast.LENGTH_SHORT).show();
         }
         db.close();
     }

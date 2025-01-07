@@ -149,6 +149,16 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    public boolean updateReq(int id, String status){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("status", status);
+
+        int updatedRows = db.update("requests", cv, "_id = ?", new String[]{String.valueOf(id)});
+        db.close();
+        return updatedRows > 0;
+    }
+
     public boolean authUser(String username, String password) {
         SQLiteDatabase db = this.getReadableDatabase(); // Get a readable database
         String query = "SELECT * FROM " + USERS + " WHERE " + EMAIL + " = ? AND " + PASS + " = ?";
@@ -166,5 +176,10 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         db.delete("users", null, null);
         db.close();
+    }
+
+    public Cursor reqByStatus(String status){
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.query("requests", null, "status = ?", new String[]{status}, null, null, null);
     }
 }

@@ -1,9 +1,12 @@
 package com.example.courseworkappproper;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -21,6 +24,7 @@ public class AdminUsersPage extends AppCompatActivity {
     private EmployeeAdapter adapter;
     private MyDatabaseHelper dbHelper;
     private ListView EmployeeList;
+    private Button newUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +35,15 @@ public class AdminUsersPage extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+        });
+
+        newUser = findViewById(R.id.NewUserButton);
+        newUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent z = new Intent(AdminUsersPage.this, EditPage.class);
+                startActivity(z);
+            }
         });
 
         EmployeeList = findViewById(R.id.EmployeeList);

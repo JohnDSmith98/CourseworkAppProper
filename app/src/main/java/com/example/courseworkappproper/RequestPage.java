@@ -29,9 +29,8 @@ import androidx.core.view.WindowInsetsCompat;
 import java.util.Calendar;
 
 public class RequestPage extends AppCompatActivity {
-    private Button btnFirstdate, btnLastdate, b1;
+    private Button btnFirstdate, btnLastdate, b1; //Initialising buttons and databases we need
     private MyDatabaseHelper myDatabaseHelper;
-    private String startdate, enddate;
 
 
     @Override
@@ -98,16 +97,16 @@ public class RequestPage extends AppCompatActivity {
             }
         }
 
-        b1.setOnClickListener(new View.OnClickListener() {
+        b1.setOnClickListener(new View.OnClickListener() { //This button submits a holiday request
             @Override
             public void onClick(View v) {
                 ContentValues cv = new ContentValues();
-                cv.put("email", "Steven Hall");
-                cv.put("start_date", btnFirstdate.getText().toString());
-                cv.put("end_date", btnLastdate.getText().toString());
-                cv.put("status", "pending");
+                cv.put("email", "Steven Hall"); //Placeholder value for what would be the logged in user
+                cv.put("start_date", btnFirstdate.getText().toString()); //It takes the start and end date values from a calender widget that
+                cv.put("end_date", btnLastdate.getText().toString()); //the user selects the dates on
+                cv.put("status", "pending"); //It adds pending status to the request
 
-                boolean isInserted = myDatabaseHelper.addReq(cv);
+                boolean isInserted = myDatabaseHelper.addReq(cv); //Toasts set up for success and failure respectively
                 if(isInserted){
                     Toast.makeText(RequestPage.this, "Request successfully submitted", Toast.LENGTH_SHORT).show();
                     makeNotification();
@@ -136,7 +135,7 @@ public class RequestPage extends AppCompatActivity {
 
             NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+          /*  if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 NotificationChannel notificationChannel = notificationManager.getNotificationChannel(chanelID);
 
                 if (notificationChannel == null) {
@@ -148,9 +147,9 @@ public class RequestPage extends AppCompatActivity {
                     notificationChannel.enableVibration(true);
                     notificationManager.createNotificationChannel(notificationChannel);
                 }
-                notificationManager.notify(0, builder.build());
+                notificationManager.notify(0, builder.build()); */
             }
         }
 
 
-    }
+   // }

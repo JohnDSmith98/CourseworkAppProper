@@ -1,6 +1,8 @@
 package com.example.courseworkappproper;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -20,14 +22,16 @@ public class HolidayManagement extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_holiday_management);
         ListView list = findViewById(R.id.ApprovedList);
-        String[] placeholderText = {"Approval 1", "Approval 2", "Approval 3"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, placeholderText );
-        list.setAdapter(adapter);
+        MyDatabaseHelper dbHelper = new MyDatabaseHelper(this);
+        Cursor appCursor = dbHelper.reqByStatus("approved");
+        Cursor pendCursor = dbHelper.reqByStatus("pending");
+        RequestAdapter appAdapter = new RequestAdapter(this, appCursor);
+        list.setAdapter(appAdapter);
         ListView list2 = findViewById(R.id.CurrentReqList);
-        String[] placeholderText2 = {"Approval 1", "Approval 2"};
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, placeholderText2 );
-        list2.setAdapter(adapter2);
+        RequestAdapter pendingAdapter = new RequestAdapter(this, pendCursor);
+        list2.setAdapter(pendingAdapter);
         Button req = findViewById(R.id.ReqButton);
+
         req.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
